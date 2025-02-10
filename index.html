@@ -3,43 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conversor Texto-Binario</title>
-    <style>
-        body { font-family: Arial, sans-serif; text-align: center; margin: 50px; }
-        textarea { width: 80%; height: 100px; margin: 10px 0; }
-        button { padding: 10px; cursor: pointer; }
-        #result { margin-top: 20px; font-weight: bold; }
-    </style>
+    <title>Convertidor de Texto y Binario</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h2>Conversor Texto ↔ Binario</h2>
-    <textarea id="inputText" placeholder="Ingrese texto o binario..."></textarea><br>
-    <button onclick="convertToBinary()">Texto a Binario</button>
-    <button onclick="convertToText()">Binario a Texto</button>
-    <div id="result"></div>
+    <h1>Convertidor de Texto a Binario y Viceversa</h1>
 
-    <script>
-        async function convertToBinary() {
-            const text = document.getElementById("inputText").value;
-            const response = await fetch("http://127.0.0.1:5000/convert/text-to-binary", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ text })
-            });
-            const data = await response.json();
-            document.getElementById("result").innerText = "Binario: " + data.binary;
-        }
+    <textarea id="inputText" placeholder="Escribe texto o binario aquí..."></textarea>
+    
+    <div class="buttons">
+        <button onclick="convertToBinary()">Texto a Binario</button>
+        <button onclick="convertToText()">Binario a Texto</button>
+    </div>
 
-        async function convertToText() {
-            const binary = document.getElementById("inputText").value;
-            const response = await fetch("http://127.0.0.1:5000/convert/binary-to-text", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ binary })
-            });
-            const data = await response.json();
-            document.getElementById("result").innerText = "Texto: " + data.text;
-        }
-    </script>
+    <p id="result"></p>
+
+    <script src="script.js"></script>
 </body>
 </html>
