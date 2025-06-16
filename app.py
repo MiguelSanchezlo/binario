@@ -9,7 +9,12 @@ def text_to_binary(text):
 
 def binary_to_text(binary):
     try:
-        return ''.join(chr(int(b, 2)) for b in binary.split())
+        chars = []
+        for b in binary.split():
+            if len(b) != 8 or any(bit not in '01' for bit in b):
+                raise ValueError
+            chars.append(chr(int(b, 2)))
+        return ''.join(chars)
     except ValueError:
         return "Error: Entrada binaria no válida"
 
